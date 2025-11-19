@@ -6,7 +6,7 @@ import { createValidationSchema } from './validationSchema'
 import { generateUTMUrl, copyToClipboard } from './utils'
 import { INITIAL_VALUES, FORM_FIELDS } from './constants'
 import URLOutput from './urlOutput'
-import FormFieldInput from './FormFieldInput'
+import FormFieldInput from './formFieldInput'
 
 const UTMBuilder = () => {
     const [generatedURL, setGeneratedURL] = useState<string>('');
