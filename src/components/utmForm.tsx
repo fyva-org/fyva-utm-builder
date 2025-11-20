@@ -7,6 +7,7 @@ import { generateUTMUrl, copyToClipboard } from './utils'
 import { INITIAL_VALUES, FORM_FIELDS } from './constants'
 import URLOutput from './urlOutput'
 import FormFieldInput from './formFieldInput'
+import { Button } from 'antd';
 
 const UTMBuilder = () => {
     const [generatedURL, setGeneratedURL] = useState<string>('');
@@ -16,7 +17,8 @@ const UTMBuilder = () => {
 
     const handleSubmit = (values: UTMFormValues, { setSubmitting }: FormikHelpers<UTMFormValues>) => {
         try {
-            const url = generateUTMUrl(values);
+            const cleanedValues = validationSchema.cast(values);
+            const url = generateUTMUrl(cleanedValues);
             setGeneratedURL(url);
             setCopySuccess(false);
         } catch (error) {
@@ -45,47 +47,62 @@ const UTMBuilder = () => {
 
     return (
         <section className="form__section">
-            <h1>UTM Builder - URL Builder to Generate UTM Codes</h1>
+            <h1 className='form__heading'>UTM Builder - URL Builder to Generate UTM Codes</h1>
 
-            <Formik
-                initialValues={INITIAL_VALUES}
-                validationSchema={validationSchema}
-                onSubmit={handleSubmit}
-                validateOnChange={true}
-                validateOnBlur={true}
-            >
-                {({ isSubmitting, resetForm, submitForm }) => (
-                    <div className="form__wrapper">
-                        {FORM_FIELDS.map((field) => (
-                            <FormFieldInput key={field.name} field={field} />
-                        ))}
+            <div className='form__grid'>
+                <Formik
+                    initialValues={INITIAL_VALUES}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSubmit}
+                    validateOnChange={true}
+                    validateOnBlur={true}
+                >
+                    {({ isSubmitting, resetForm, submitForm }) => (
+                        <div className="form__wrapper">
 
-                        <div className="form__actions">
-                            <button
-                                type="button"
-                                onClick={submitForm}
-                                disabled={isSubmitting}
-                                className="form__btn form__btn--primary"
-                            >
-                                {isSubmitting ? 'Generating...' : 'Generate URL'}
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => handleReset(resetForm)}
-                                className="form__btn form__btn--secondary"
-                            >
-                                Reset
-                            </button>
+                            {FORM_FIELDS.map((field) => {
+                                return field.type === 'text' && <FormFieldInput key={field.name} field={field} />
+                            })}
+
+                            <div className='form__group--select'>
+                                {FORM_FIELDS.map((field) => {
+                                    return field.type === 'checkbox' && <FormFieldInput key={field.name} field={field} />
+                                })}
+                            </div>
+
+
+                            <div className="form__actions">
+                                <Button
+                                    type="primary"
+                                    size={'large'}
+                                    color='default'
+                                    variant="solid"
+                                    onClick={submitForm}
+                                    disabled={isSubmitting}
+                                    className="form__btn form__btn--primary"
+                                >
+                                    {isSubmitting ? 'Generating...' : 'Generate URL'}
+                                </Button>
+                                <Button
+                                    type="primary"
+                                    danger
+                                    size={'large'}
+                                    onClick={() => handleReset(resetForm)}
+                                    className="form__btn form__btn--secondary"
+                                >
+                                    Reset
+                                </Button>
+                            </div>
                         </div>
+                    )}
+                </Formik>
 
-                        <URLOutput
-                            url={generatedURL}
-                            onCopy={handleCopyUrl}
-                            copySuccess={copySuccess}
-                        />
-                    </div>
-                )}
-            </Formik>
+                <URLOutput
+                    url={generatedURL}
+                    onCopy={handleCopyUrl}
+                    copySuccess={copySuccess}
+                />
+            </div>
         </section>
     );
 };

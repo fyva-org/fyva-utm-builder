@@ -11,6 +11,22 @@ export const createValidationSchema = () => {
             .min(2, 'Minimum 2 characters')
             .max(100, 'Maximum 100 characters')
             .required('This field is required'),
+        utm_campaign: Yup.string()
+            .trim()
+            .min(2, 'Minimum 2 characters')
+            .max(100, 'Maximum 100 characters')
+            .required('This field is required')
+            .transform((value) => {
+                if (!value) return value;
+                const transformValue = value
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9]+/g, '_')   // replace spaces, hyphens, symbols with underscore
+                    .replace(/^_+|_+$/g, '');      // remove leading/trailing underscores
+                console.log(transformValue, 'transformValue')
+                return transformValue
+            }),
+
         utm_source: Yup.string()
             .trim()
             .min(2, 'Minimum 2 characters')
@@ -21,18 +37,5 @@ export const createValidationSchema = () => {
             .min(2, 'Minimum 2 characters')
             .max(100, 'Maximum 100 characters')
             .required('This field is required'),
-        utm_campaign: Yup.string()
-            .trim()
-            .min(2, 'Minimum 2 characters')
-            .max(100, 'Maximum 100 characters')
-            .required('This field is required'),
-        utm_term: Yup.string()
-            .trim()
-            .min(2, 'Minimum 2 characters')
-            .max(100, 'Maximum 100 characters'),
-        utm_content: Yup.string()
-            .trim()
-            .min(2, 'Minimum 2 characters')
-            .max(100, 'Maximum 100 characters'),
     });
 };
