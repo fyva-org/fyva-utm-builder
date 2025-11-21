@@ -10,7 +10,14 @@ export const generateUTMUrl = (values: UTMFormValues): string => {
 
     const url = new URL(baseUrl);
 
-    Object.entries(utmParams).forEach(([key, value]) => {
+    const order: Array<keyof typeof utmParams> = [
+        'utm_source',
+        'utm_medium',
+        'utm_campaign'
+    ];
+
+    order.forEach((key) => {
+        const value = utmParams[key];
         if (value?.trim()) {
             url.searchParams.append(key, value.trim());
         }

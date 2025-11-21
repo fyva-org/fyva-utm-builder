@@ -7,10 +7,13 @@ const URLOutput = ({ url, onCopy, copySuccess }: { url: string; onCopy: () => vo
     if (!url) return null;
     return (
         <div className="form__footer">
-            <h6>Generated UTM Tracking URL</h6>
+            <h6>Generated URL</h6>
             <div className="url-output">
                 <TextArea
-                    rows={10}
+                    style={{
+                        height: '100px'
+                    }}
+                    rows={1}
                     readOnly
                     value={url}
                     className="url-input"

@@ -15,7 +15,6 @@ export const createValidationSchema = () => {
             .trim()
             .min(2, 'Minimum 2 characters')
             .max(100, 'Maximum 100 characters')
-            .required('This field is required')
             .transform((value) => {
                 if (!value) return value;
                 const transformValue = value

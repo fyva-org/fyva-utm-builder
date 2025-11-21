@@ -47,7 +47,7 @@ const UTMBuilder = () => {
 
     return (
         <section className="form__section">
-            <h1 className='form__heading'>UTM Builder - URL Builder to Generate UTM Codes</h1>
+            <h1 className='form__heading'>UTM Builder</h1>
 
             <div className='form__grid'>
                 <Formik
@@ -61,7 +61,7 @@ const UTMBuilder = () => {
                         <div className="form__wrapper">
 
                             {FORM_FIELDS.map((field) => {
-                                return field.type === 'text' && <FormFieldInput key={field.name} field={field} />
+                                return field.type === 'text' &&  <FormFieldInput key={field.name} field={field} />
                             })}
 
                             <div className='form__group--select'>

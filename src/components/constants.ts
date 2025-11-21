@@ -9,13 +9,6 @@ export const FORM_FIELDS: FormFieldConfig[] = [
         type: 'text',
     },
     {
-        name: 'utm_campaign',
-        label: 'UTM Campaign',
-        placeholder: 'e.g. product, black friday, april sale',
-        required: true,
-        type: 'text',
-    },
-    {
         name: 'utm_medium',
         label: 'UTM Medium',
         placeholder: 'e.g. email, social, cpc',
@@ -39,14 +32,21 @@ export const FORM_FIELDS: FormFieldConfig[] = [
             display: ['facebook', 'instagram', 'google'],
             affiliate: ['affiliate', 'partner'],
             video: ['youtube'],
-            audio: [],      // nothing valid provided in list
+            audio: ['audio'],    
             paidsearch: ['google', 'bing'],
-            sms: [],
-            push: [],
+            sms: ['sms'],
+            push: ['push'],
             banner: ['google', 'facebook'],
             influencer: ['instagram', 'youtube', 'twitter']
         }
-    }
+    },
+    {
+        name: 'utm_campaign',
+        label: 'UTM Campaign',
+        placeholder: 'e.g. product, black friday, april sale',
+        required: false,
+        type: 'text',
+    },
 ];
 
 export const INITIAL_VALUES: UTMFormValues = {

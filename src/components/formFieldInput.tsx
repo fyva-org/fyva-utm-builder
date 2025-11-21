@@ -16,9 +16,9 @@ const FormFieldInput = ({ field: fieldConfig, }: { field: FormFieldConfig }) => 
         ? fieldConfig.checkboxMap[dependentParent] || []
         : []);
 
-    if (fieldConfig.checkboxMap && !dependentParent) {
-        return null;
-    }
+    // if (fieldConfig.checkboxMap && !dependentParent) {
+    //     return null;
+    // }
 
     useEffect(() => {
         if (fieldConfig.dependentOn) {
@@ -31,25 +31,26 @@ const FormFieldInput = ({ field: fieldConfig, }: { field: FormFieldConfig }) => 
         <React.Fragment>
             {fieldConfig.type === 'text' &&
                 <Field name={fieldConfig.name}>
-                    {({ field, meta }: FieldProps) => (
-                        <div className="form__group">
-                            <div className="formInput__wrapper">
-                                <Title style={{ fontWeight: '500', color: '#323949' }} level={5} >{fieldConfig.label}{fieldConfig.required && '*'}</Title>
-                                <Input
-                                    {...field}
-                                    id={fieldConfig.name}
-                                    type="text"
-                                    size='middle'
-                                    status={meta.error && "error"}
-                                    placeholder={fieldConfig.placeholder}
-                                    className={'formInput__field ' + (meta.touched && meta.error ? 'input-error' : '')}
-                                />
-                                {meta.touched && meta.error && (
-                                    <span className="form__error">{meta.error}</span>
-                                )}
+                    {({ field, meta }: FieldProps) => {
+                        return (
+                            <div className="form__group">
+                                <div className="formInput__wrapper">
+                                    <Title style={{ fontWeight: '500', color: '#323949' }} level={5} >{fieldConfig.label}</Title>
+                                    <Input
+                                        {...field}
+                                        id={fieldConfig.name}
+                                        type="text"
+                                        size='middle'
+                                        placeholder={fieldConfig.placeholder}
+                                        className={'formInput__field ' + (meta.touched && meta.error ? 'input-error' : '')}
+                                    />
+                                    {meta.touched && meta.error && (
+                                        <span className="form__error">{meta.error}</span>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )
+                    }}
                 </Field>
             }
 
@@ -57,7 +58,7 @@ const FormFieldInput = ({ field: fieldConfig, }: { field: FormFieldConfig }) => 
                 <Field name={fieldConfig.name}>
                     {({ field, meta }: FieldProps) => (
                         <div className="formCheckbox__wrapper">
-                            <Title style={{ fontWeight: '500', color: '#323949' }} level={5} >{fieldConfig.label}{fieldConfig.required && '*'}</Title>
+                            <Title style={{ fontWeight: '500', color: '#323949' }} level={5} >{fieldConfig.label}</Title>
                             <Select
                                 style={{
                                     width: '100%',
@@ -70,7 +71,7 @@ const FormFieldInput = ({ field: fieldConfig, }: { field: FormFieldConfig }) => 
                                 onChange={(val) => setFieldValue(fieldConfig.name, val)}
                                 options={checkboxItems.map((item) => ({
                                     value: item,
-                                    label: item.toUpperCase(),
+                                    label: item.toLowerCase(),
                                 }))}
                                 size='large'
                             />
