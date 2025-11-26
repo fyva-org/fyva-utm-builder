@@ -22,23 +22,7 @@ export const FORM_FIELDS: FormFieldConfig[] = [
         placeholder: 'e.g. newsletter, twitter, google',
         required: true,
         type: 'checkbox',
-        dependentOn: 'utm_medium',
-        checkboxMap: {
-            organic: ['google', 'bing'],
-            cpc: ['google', 'bing', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube'],
-            email: ['newsletter'],
-            social: ['facebook', 'instagram', 'linkedin', 'twitter', 'youtube'],
-            referral: ['blog', 'partner'],
-            display: ['facebook', 'instagram', 'google'],
-            affiliate: ['affiliate', 'partner'],
-            video: ['youtube'],
-            audio: ['audio'],    
-            paidsearch: ['google', 'bing'],
-            sms: ['sms'],
-            push: ['push'],
-            banner: ['google', 'facebook'],
-            influencer: ['instagram', 'youtube', 'twitter']
-        }
+        checkboxList:['google', 'bing', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'newsletter', 'blog', 'partner', 'affiliate', 'appstore', 'playstore'],
     },
     {
         name: 'utm_campaign',

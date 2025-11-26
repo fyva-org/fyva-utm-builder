@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Field, useFormikContext } from 'formik';
 import type { FieldProps } from 'formik'
 import type { FormFieldConfig } from './types'
@@ -7,25 +7,8 @@ const { Title } = Typography;
 
 const FormFieldInput = ({ field: fieldConfig, }: { field: FormFieldConfig }) => {
 
-    const { values, setFieldValue } = useFormikContext<any>();
-    const dependentParent = fieldConfig.dependentOn
-        ? values[fieldConfig.dependentOn]
-        : null;
-
-    const checkboxItems = fieldConfig.checkboxList || (fieldConfig.checkboxMap && dependentParent
-        ? fieldConfig.checkboxMap[dependentParent] || []
-        : []);
-
-    // if (fieldConfig.checkboxMap && !dependentParent) {
-    //     return null;
-    // }
-
-    useEffect(() => {
-        if (fieldConfig.dependentOn) {
-            setFieldValue(fieldConfig.name, '');
-        }
-    }, [dependentParent]);
-
+    const { setFieldValue } = useFormikContext<any>();
+    const checkboxItems = fieldConfig.checkboxList ? fieldConfig.checkboxList : []
 
     return (
         <React.Fragment>
@@ -69,7 +52,7 @@ const FormFieldInput = ({ field: fieldConfig, }: { field: FormFieldConfig }) => 
                                 optionFilterProp="label"
                                 value={field.value || undefined}
                                 onChange={(val) => setFieldValue(fieldConfig.name, val)}
-                                options={checkboxItems.map((item) => ({
+                                options={checkboxItems?.map((item) => ({
                                     value: item,
                                     label: item.toLowerCase(),
                                 }))}

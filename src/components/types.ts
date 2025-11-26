@@ -12,6 +12,4 @@ export interface FormFieldConfig {
     required: boolean;
     type?: 'text' | 'checkbox';
     checkboxList?: string[];
-    checkboxMap?: Record<string, string[]>;
-    dependentOn?: keyof UTMFormValues;
 }

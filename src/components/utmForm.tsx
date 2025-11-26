@@ -61,7 +61,7 @@ const UTMBuilder = () => {
                         <div className="form__wrapper">
 
                             {FORM_FIELDS.map((field) => {
-                                return field.type === 'text' &&  <FormFieldInput key={field.name} field={field} />
+                                return field.type === 'text' && field.name === 'website_url' && <FormFieldInput key={field.name} field={field} />
                             })}
 
                             <div className='form__group--select'>
@@ -70,6 +70,9 @@ const UTMBuilder = () => {
                                 })}
                             </div>
 
+                            {FORM_FIELDS.map((field) => {
+                                return field.type === 'text' && field.name === 'utm_campaign' && <FormFieldInput key={field.name} field={field} />
+                            })}
 
                             <div className="form__actions">
                                 <Button
