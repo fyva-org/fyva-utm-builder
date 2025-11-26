@@ -9,20 +9,20 @@ export const FORM_FIELDS: FormFieldConfig[] = [
         type: 'text',
     },
     {
+        name: 'utm_source',
+        label: 'UTM Source',
+        placeholder: 'e.g. newsletter, twitter, google',
+        required: true,
+        type: 'checkbox',
+        checkboxList: ['google', 'bing', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'newsletter', 'blog', 'partner', 'affiliate', 'appstore', 'playstore'],
+    },
+    {
         name: 'utm_medium',
         label: 'UTM Medium',
         placeholder: 'e.g. email, social, cpc',
         required: true,
         type: 'checkbox',
         checkboxList: ['organic', 'cpc', 'email', 'social', 'referral', 'display', 'affiliate', 'video', 'audio', 'paidsearch', 'sms', 'push', 'banner', 'influencer']
-    },
-    {
-        name: 'utm_source',
-        label: 'UTM Source',
-        placeholder: 'e.g. newsletter, twitter, google',
-        required: true,
-        type: 'checkbox',
-        checkboxList:['google', 'bing', 'facebook', 'instagram', 'linkedin', 'twitter', 'youtube', 'newsletter', 'blog', 'partner', 'affiliate', 'appstore', 'playstore'],
     },
     {
         name: 'utm_campaign',
