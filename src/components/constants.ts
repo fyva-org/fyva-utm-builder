@@ -14,7 +14,7 @@ export const FORM_FIELDS: FormFieldConfig[] = [
         placeholder: 'e.g. newsletter, twitter, google',
         required: true,
         type: 'checkbox',
-        checkboxList: ['google', 'bing', 'facebook', 'instagram', 'linkedin', 'pinterest', 'twitter', 'youtube', 'newsletter', 'blog', 'partner', 'affiliate', 'appstore', 'playstore', 'adpl', 'tdmf', 'count'],
+        checkboxList: ['google', 'bing', 'facebook', 'instagram', 'linkedin', 'pinterest', 'twitter', 'youtube', 'newsletter', 'blog', 'partner', 'affiliate', 'appstore', 'playstore', 'adpl', 'tdmf', 'count', 'analyticsclouds'],
     },
     {
         name: 'utm_medium',
